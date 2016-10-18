@@ -1,2 +1,11 @@
 ---
 # tasks file for mysql-import
+- name: Import MySQL databases from SQL.
+  mysql_db:
+    name: "{{ item.name }}"
+    target: "{{ item.sqlfile }}"
+    state: import
+    login_user: "{{ mysql_users.name }}"
+    login_password: "{{ mysql_users.password }}"
+  with_items: "{{ mysql_databases }}"
+

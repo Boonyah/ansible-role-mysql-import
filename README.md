@@ -13,10 +13,23 @@ Role Variables
 
 Use the same variables as geerlingguy.mysql plus a variable for the sql file path.
 
+```yaml
+# Boonyah.mysql-import
+mysql_sql_path: /tmp
+mysql_databases:
+  - name: database_name
+    sqlfile: "{{ mysql_sql_path }}/database_name.sql"
+  - name: database_name2
+    sqlfile: "{{ mysql_sql_path }}/database_name2.sql"
+mysql_users:
+  - name: database_user 
+    password: database_password
+```
+
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+I use the same variable names as geerlingguy.mysql
 
 Example Playbook
 ----------------
