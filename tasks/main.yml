@@ -1,18 +1,27 @@
 ---
 # tasks file for mysql-import
 
-- name: Dump variables
-    - debug: msg=MySQL Username is: "{{mysql_users.name | mandatory }}"
-    - debug: msg=MySQL Password is: "{{mysql_users.password | mandatory }}"
-    - debug: msg=MySQL Root Password is "{{db_root_password | mandatory }}"
-    - debug: msg=Bitbucket Username is: "{{bitbucket_user | mandatory }}"
-    - debug: msg=Bitbucket Password is: "{{bitbucket_password | mandatory }}"
-    - pause: seconds=5 prompt="Examine the above variables"
+- name: Dump MySQL username variable
+  debug: msg="MySQL Username is {{ mysql_users.name | mandatory }}"
+
+- name: Dump MySQL password variable
+  debug: msg="MySQL Password is {{ mysql_users.password | mandatory }}"
+
+- name: Dump MySQL root password variable
+  debug: msg="MySQL Root Password is {{ db_root_password | mandatory }}"
+
+- name: Dump Bitbucket username variable
+  debug: msg="Bitbucket Username is {{ bitbucket_user | mandatory }}"
+
+- name: Dump Bitbucket username variable
+  debug: msg="Bitbucket Password is {{ bitbucket_password | mandatory }}"
 
 - name: Dump variables of database names
-  - debug:
-      msg: Database name is "{{ item.name }}" and SQL file is: "{{ item.sqlfile }}"
-    with_items: "{{ mysql_databases }}"
+  debug: msg=Database name is "{{ item.name }}" and SQL file is "{{ item.sqlfile }}"
+  with_items: "{{ mysql_databases }}"
+
+- name: Pause to examine variables
+  pause: seconds=5 prompt="Examine the above variables"
 
 #- name: Import MySQL databases from SQL.
 #  mysql_db:
