@@ -2,11 +2,11 @@
 # tasks file for mysql-import
 
 - name: Dump variables
-    - debug: msg="MySQL Username is: {{mysql_users.name | mandatory }}"
-    - debug: msg="MySQL Password is: {{mysql_users.password | mandatory }}"
-    - debug: msg="MySQL Root Password is: {{db_root_password | mandatory }}"
-    - debug: msg="Bitbucket Username is: {{bitbucket_user | mandatory }}"
-    - debug: msg="Bitbucket Password is: {{bitbucket_password | mandatory }}"
+    - debug: msg=MySQL Username is: "{{mysql_users.name | mandatory }}"
+    - debug: msg=MySQL Password is: "{{mysql_users.password | mandatory }}"
+    - debug: msg=MySQL Root Password is "{{db_root_password | mandatory }}"
+    - debug: msg=Bitbucket Username is: "{{bitbucket_user | mandatory }}"
+    - debug: msg=Bitbucket Password is: "{{bitbucket_password | mandatory }}"
     - pause: seconds=5 prompt="Examine the above variables"
 
 - name: Dump variables of database names
