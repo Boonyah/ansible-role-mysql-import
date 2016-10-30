@@ -11,7 +11,7 @@
 
 - name: Dump variables of database names
   - debug:
-      msg: "Database name is {{ item.name }} and SQL file is: {{ item.sqlfile }}"
+      msg: Database name is "{{ item.name }}" and SQL file is: "{{ item.sqlfile }}"
     with_items: "{{ mysql_databases }}"
 
 #- name: Import MySQL databases from SQL.
