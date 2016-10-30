@@ -1,11 +1,25 @@
 ---
 # tasks file for mysql-import
-- name: Import MySQL databases from SQL.
-  mysql_db:
-    name: "{{ item.name }}"
-    target: "{{ item.sqlfile }}"
-    state: import
-    login_user: "{{ mysql_users.name }}"
-    login_password: "{{ mysql_users.password }}"
-  with_items: "{{ mysql_databases }}"
+
+- name: Dump variables
+    - debug: msg="MySQL Username is: {{mysql_users.name | mandatory }}"
+    - debug: msg="MySQL Password is: {{mysql_users.password | mandatory }}"
+    - debug: msg="MySQL Root Password is: {{db_root_password | mandatory }}"
+    - debug: msg="Bitbucket Username is: {{bitbucket_user | mandatory }}"
+    - debug: msg="Bitbucket Password is: {{bitbucket_password | mandatory }}"
+    - pause: seconds=5 prompt="Examine the above variables"
+
+- name: Dump variables of database names
+  - debug:
+      msg: "Database name is {{ item.name }} and SQL file is: {{ item.sqlfile }}"
+    with_items: "{{ mysql_databases }}"
+
+#- name: Import MySQL databases from SQL.
+#  mysql_db:
+#    name: "{{ item.name }}"
+#    target: "{{ item.sqlfile }}"
+#    state: import
+#    login_user: "{{ mysql_users.name }}"
+#    login_password: "{{ mysql_users.password }}"
+#  with_items: "{{ mysql_databases }}"
 
